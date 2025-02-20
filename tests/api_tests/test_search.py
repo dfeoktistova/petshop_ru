@@ -1,9 +1,10 @@
 import pytest
-from helpers.api_steps import get_GET_response
+from helpers.api.api_steps import get_GET_response
 import urllib.parse
 import allure
 
 
+@allure.epic('API')
 @pytest.mark.parametrize("cityId, page, query",
                          [(22, 1, 'корм для собак'),
                           (21, 2, 'Игрушка для щенка')])

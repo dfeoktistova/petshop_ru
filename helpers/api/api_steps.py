@@ -1,7 +1,7 @@
 import requests
 from model.const import URL
 import logging
-from utils.attach import attach, logging
+from utils.attach_api import attach, logging
 import allure
 
 
