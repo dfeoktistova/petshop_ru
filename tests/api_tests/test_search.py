@@ -1,5 +1,5 @@
 import pytest
-from helpers.api import get_GET_response
+from helpers.api_steps import get_GET_response
 import urllib.parse
 import allure
 

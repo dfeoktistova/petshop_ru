@@ -1,5 +1,5 @@
 import allure
-from helpers.api import get_GET_response, get_POST_response, get_DELETE_response, assert_results
+from helpers.api_steps import get_GET_response, get_POST_response, get_DELETE_response, assert_results
 from data.api_data import product_65292, product_66863
 import pytest
 

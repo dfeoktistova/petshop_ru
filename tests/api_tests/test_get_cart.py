@@ -1,5 +1,5 @@
 import allure
-from helpers.api import get_GET_response
+from helpers.api_steps import get_GET_response
 
 
 def test_get_cart():
