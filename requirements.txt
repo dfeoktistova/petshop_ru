@@ -1,4 +1,9 @@
-pytest
+pytest~=8.3.3
+pydantic_settings
 requests
-selene==2.0.0rc9
+python-dotenv
+selenium~=4.27.1
+requests
+selene>=2.0.0rc4
 allure-pytest
+appium-python-client~=4.4.0
