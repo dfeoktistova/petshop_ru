@@ -38,8 +38,6 @@ def mobile_management(context):
 
     browser.config.driver = webdriver.Remote(options.get_capability('remote_url'), options=options)
 
-    allure.attach(browser.driver.get_screenshot_as_png(), name='screenshot', attachment_type=AttachmentType.PNG)
-    allure.attach(browser.driver.page_source, name='xml_dump', attachment_type=AttachmentType.XML)
     session_id = browser.driver.session_id
 
     yield
