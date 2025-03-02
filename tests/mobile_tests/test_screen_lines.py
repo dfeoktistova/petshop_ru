@@ -5,6 +5,7 @@ from selene import browser
 from utils.attach_mobile import attach
 
 
+@allure.epic('Mobile')
 def test_screen_lines(mobile_management):
     first_screen_line = browser.element(
         (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(5)'))
