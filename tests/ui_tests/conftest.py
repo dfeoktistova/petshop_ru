@@ -1,5 +1,5 @@
 import pytest
-from selene import browser, have
+from selene import browser
 from selenium import webdriver
 from model.const import URL
 from selenium.webdriver.chrome.options import Options
@@ -50,7 +50,7 @@ def open_home_page():
 def attach():
     yield
 
-    attach_ui.add_screenshot(browser)
-    attach_ui.add_logs(browser)
-    attach_ui.add_html(browser)
+    # attach_ui.add_screenshot(browser)
+    # attach_ui.add_logs(browser)
+    # attach_ui.add_html(browser)
     # attach_ui.add_video(browser)

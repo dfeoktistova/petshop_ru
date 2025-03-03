@@ -7,3 +7,4 @@ requests
 selene>=2.0.0rc4
 allure-pytest
 appium-python-client~=4.4.0
+jsonschema

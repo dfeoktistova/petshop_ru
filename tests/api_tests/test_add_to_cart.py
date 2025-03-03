@@ -1,23 +1,27 @@
 from helpers.api.api_steps import get_GET_response, get_POST_response, assert_results
-from data.api_data import product_65292, product_66863
+from data.api_data import product_120571_toys, product_127000_toys
 import pytest
 import allure
+from jsonschema import validate
+from data.schemas import schema_add_to_cart
 
 
 @allure.epic('API')
 @pytest.mark.parametrize("product_id, quantity, brand_id, brand, price",
-                         [(
-                          product_65292.product_id, product_65292.quantity, product_65292.brand_id, product_65292.brand,
-                          product_65292.price),
-                          (
-                          product_66863.product_id, product_66863.quantity, product_66863.brand_id, product_66863.brand,
-                          product_66863.price)])
+                         [(product_120571_toys.product_id, product_120571_toys.quantity,
+                           product_120571_toys.brand_id, product_120571_toys.brand,
+                           product_120571_toys.price),
+                          (product_127000_toys.product_id, product_127000_toys.quantity,
+                           product_127000_toys.brand_id, product_127000_toys.brand,
+                           product_127000_toys.price)])
 def test_add_to_cart(product_id, quantity, brand_id, brand, price):
     url = 'api/v4/site/cart/'
 
     with allure.step("Добавить товар в корзину"):
-        cookies_response_add_to_cart, response_add_to_cart = get_POST_response(url, json={'productId': product_id,
-                                                                                          'quantity': quantity})
+        response = {'productId': product_id, 'quantity': quantity}
+        validate(response, schema_add_to_cart)
+
+        cookies_response_add_to_cart, response_add_to_cart = get_POST_response(url, json=response)
 
     with allure.step("Запросить содержимое корзины"):
         cookies_get_cart, response_get_cart = get_GET_response(url, cookies=cookies_response_add_to_cart)

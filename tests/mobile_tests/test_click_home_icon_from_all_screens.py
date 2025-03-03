@@ -6,7 +6,7 @@ from utils.attach_mobile import attach
 
 
 @allure.epic('Mobile')
-def test_click_home_icon_from_all_screens(mobile_management):
+def test_click_home_icon_from_all_screens():
     first_screen_line = browser.element(
         (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().className("android.view.View").instance(5)'))
     second_screen_line = browser.element(

@@ -1,15 +1,15 @@
 from helpers.api.api_steps import get_GET_response, get_POST_response, get_DELETE_response, assert_results
-from data.api_data import product_65292, product_66863
+from data.api_data import product_120571_toys, product_127000_toys
 import pytest
 import allure
 
 
 @allure.epic('API')
 @pytest.mark.parametrize("product_id, quantity, brand_id, brand, price",
-                         [(product_65292.product_id, product_65292.quantity, product_65292.brand_id,
-                           product_65292.brand, product_65292.price),
-                          (product_66863.product_id, product_66863.quantity, product_66863.brand_id,
-                           product_66863.brand, product_66863.price)])
+                         [(product_120571_toys.product_id, product_120571_toys.quantity, product_120571_toys.brand_id,
+                           product_120571_toys.brand, product_120571_toys.price),
+                          (product_127000_toys.product_id, product_127000_toys.quantity, product_127000_toys.brand_id,
+                           product_127000_toys.brand, product_127000_toys.price)])
 def test_delete_from_cart(product_id, quantity, brand_id, brand, price):
     with allure.step("Добавить товар в корзину"):
         url_add_to_cart = 'api/v4/site/cart/'

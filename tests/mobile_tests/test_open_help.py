@@ -5,7 +5,7 @@ from utils.attach_mobile import attach
 
 
 @allure.epic('Mobile')
-def test_open_help(mobile_management):
+def test_open_help():
     continue_button = browser.element((AppiumBy.ACCESSIBILITY_ID, 'Далее'))
     great_button = browser.element((AppiumBy.ACCESSIBILITY_ID, 'Отлично!'))
     help_button = browser.element((AppiumBy.ACCESSIBILITY_ID, 'Помощь 24/7'))

@@ -5,7 +5,7 @@ from utils.attach_mobile import attach
 
 
 @allure.epic('Mobile')
-def test_skip_buttons(mobile_management):
+def test_skip_buttons():
     continue_button = browser.element((AppiumBy.ACCESSIBILITY_ID, 'Далее'))
     great_button = browser.element((AppiumBy.ACCESSIBILITY_ID, 'Отлично!'))
 
