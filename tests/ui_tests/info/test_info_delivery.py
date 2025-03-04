@@ -3,11 +3,11 @@ import allure
 
 @allure.epic('UI')
 @allure.story('info')
-def test_info_delivery(app):
+def test_info_delivery(app, setup_browser):
     app.info.open_delivery_info()
 
 
 @allure.epic('UI')
 @allure.story('info')
-def test_info_quick_delivery(app):
+def test_info_quick_delivery(app, setup_browser):
     app.info.open_quick_delivery_info()

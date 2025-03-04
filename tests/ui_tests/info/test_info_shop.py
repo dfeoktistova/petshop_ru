@@ -5,12 +5,12 @@ import allure
 
 @allure.epic('UI')
 @allure.story('info')
-def test_info_shop(app):
+def test_info_shop(app, setup_browser):
     app.info.open_shop_info()
 
 
 @allure.epic('UI')
 @allure.story('info')
-def test_shop_list(app):
+def test_shop_list(app, setup_browser):
     app.info.open_shop_list()
     time.sleep(5)
