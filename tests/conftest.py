@@ -11,8 +11,8 @@ from appium import webdriver as appium_driver
 
 DEFAULT_BROWSER_NAME = "chrome"
 DEFAULT_BROWSER_VERSION = "126.0"
-DEFAULT_UI_ENV = 'local'
-DEFAULT_MOBILE_ENV = 'local_emulator'
+DEFAULT_MOBILE_ENV = 'bstack'
+DEFAULT_UI_ENV = 'selenoid'
 
 
 def pytest_addoption(parser):

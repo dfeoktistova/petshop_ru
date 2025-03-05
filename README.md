@@ -3,20 +3,6 @@
 
   
 ## Технологии и инструменты
-
-<p align="center">
-<a href="https://www.jetbrains.com/idea/"><img src="images/logo/Idea.svg" width="50" height="50"  alt="IDEA"/></a>
-<a href="https://www.java.com/"><img src="images/logo/Java.svg" width="50" height="50"  alt="Java"/></a>
-<a href="https://github.com/"><img src="images/logo/GitHub.svg" width="50" height="50"  alt="Github"/></a>
-<a href="https://junit.org/junit5/"><img src="images/logo/Junit5.svg" width="50" height="50"  alt="JUnit 5"/></a>
-<a href="https://gradle.org/"><img src="images/logo/Gradle.svg" width="50" height="50"  alt="Gradle"/></a>
-<a href="https://selenide.org/"><img src="images/logo/Selenide.svg" width="50" height="50"  alt="Selenide"/></a>
-<a href="https://aerokube.com/selenoid/"><img src="images/logo/Selenoid.svg" width="50" height="50"  alt="Selenoid"/></a>
-<a href="https://github.com/allure-framework/allure2"><img src="images/logo/Allure.svg" width="50" height="50"  alt="Allure"/></a>
-<a href="https://www.jenkins.io/"><img src="images/logo/Jenkins.svg" width="50" height="50"  alt="Jenkins"/></a>
-<a href="https://qameta.io/"><img src="images/logo/Allure_TO.svg" width="50" height="50"  alt="Allure TestOps"/></a>  
-<a href="https://www.atlassian.com/ru/software/jira/"><img src="images/logo/Jira.svg" width="50" height="50"  alt="Jira"/></a>  
-</p>
 В данном проекте содержатся UI, API и MOBILE автотесты, написанные на <code>Python</code>.
 
 >
@@ -24,6 +10,8 @@
 >
 > Запуск автотестов выполняется или на своей локальной машине после копирования репозитория, или на сервере непрерывной интеграции <code>Jenkins</code>, который 
 > развернут в облаке.
+> 
+> Запуск мобильных тестов выполняется на локальном Android эмуляторе или в контейнере Browserstack.
 >
 > После завершения прогона <code>Allure Report</code> формирует отчеты о запуске тестов.
 
@@ -139,6 +127,18 @@ def pytest_addoption(parser):
 
 Если параметры запуска, рассмотренные в предыдущем разделе, не указаны, то тесты будут запущены
 с дефолтными настройками (задаются в файле "conftest").
+
+
+### Удаленный запуск
+
+1. Перейти в [Jenkins](https://jenkins.autotests.cloud/job/001-feoktoster_petshop/)
+2. Нажать кнопку "Build with Parameters"
+3. Задать параметры запуска (аналогично локальному запуску, кроме среды запуска автотестов для MOBILE и UI тестов:
+для удаленного запуска доступен только запуск через контейнеры Browserstack и Selenoid соответственно).
+4. Нажать кнопку "Build"
+
+После этого будет запущена сборка, по результатам которой будет создан и прикреплен Allure-отчет.
+
 
 </details>
 
