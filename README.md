@@ -161,13 +161,15 @@ def pytest_addoption(parser):
 Запрос с параметрами/ответ, скриншоты, лог, видео и HTML страница:
 
 
-[!(https://github.com/dfeoktistova/petshop_ru/blob/master/data/images/2.png)])
+[![Allure](https://github.com/dfeoktistova/petshop_ru/blob/master/data/images/2.png)])
 
 Пример видео с прохождением UI-теста:
+
 ![Видео](https://github.com/dfeoktistova/petshop_ru/blob/master/data/images/allure_video.gif)
 
 
 Пример видео с прохождением MOBILE-теста:
+
 ![Видео](https://github.com/dfeoktistova/petshop_ru/blob/master/data/images/mobile_video.gif)
 
 
