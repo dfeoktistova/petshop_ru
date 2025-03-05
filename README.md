@@ -3,26 +3,6 @@
 <img title="Allure Overview Dashboard" src="data/images/1.PNG">
 </p>
 
-##  Содержание:
-
-> ➠ [Технологический стек](#classical_building-технологический-стек)
->
-> ➠ [Покрытый функционал](#earth_africa-покрытый-функционал)
->
-> ➠ [Запуск из терминала](#earth_africa-Запуск-тестов-из-терминала)
->
-> ➠ [Примеры использования](#earth_africa-Allure-отчет)
->
-> ➠ [Allure отчет](#earth_africa-Allure-отчет)
-> 
-> ➠ [Интеграция с Jira](#earth_africa-Allure-отчет)
->
-> ➠ [Отчет в Telegram](#earth_africa-Уведомление-в-Telegram-при-помощи-бота)
->
-> ➠ [Видео примеры прохождения тестов](#earth_africa-Примеры-видео-о-прохождении-тестов)
- 
-## W
-
   
 ## Технологии и инструменты
 
@@ -39,115 +19,159 @@
 <a href="https://qameta.io/"><img src="images/logo/Allure_TO.svg" width="50" height="50"  alt="Allure TestOps"/></a>  
 <a href="https://www.atlassian.com/ru/software/jira/"><img src="images/logo/Jira.svg" width="50" height="50"  alt="Jira"/></a>  
 </p>
-В данном проекте автотесты написаны на <code>Java</code> с использованием <code>Selenide</code> для UI-тестов.
+В данном проекте содержатся UI, API и MOBILE автотесты, написанные на <code>Python</code>.
 
-#### Реализованы паттерны PageObject и Lambda Steps
 >
-> <code>Selenoid</code> выполняет запуск браузеров в контейнерах <code>Docker</code>.
+> <code>Selenoid</code> выполняет запуск браузеров в контейнерах <code>Docker</code>. Также проект предполагает возможность запуска тестов локально.
 >
-> <code>Allure Report/Allure TestOps</code> формируют отчеты о запуске тестов.
+> Запуск автотестов выполняется или на своей локальной машине после копирования репозитория, или на сервере непрерывной интеграции <code>Jenkins</code>, который 
+> развернут в облаке.
 >
-> Для автоматизированной сборки проекта используется <code>Gradle</code>.
->
-> В качестве библиотеки для модульного тестирования используется <code>JUnit 5</code>.
->
-> <code>Jenkins</code> выполняет запуск тестов.
-> После завершения прогона отправляются уведомления с помощью бота в <code>Telegram</code>.
+> После завершения прогона <code>Allure Report</code> формирует отчеты о запуске тестов.
 
 ## Покрытый функционал
+### API
 
-> Разработаны автотесты на <code>UI</code>.
+- [x] Добавление различных товаров в корзину
+- [x] Удаление товаров из корзины
+- [x] Запрос содержимого корзины
+- [x] Запрос акционных предложений
+- [x] Поиск по сайту
+
 ### UI
 
-- [x] Тестирование входа на сайт до 18 лет
-- [x] Тестирование входа на сайт после 18 лет
-- [x] Тестирование поиска коктейлей
-- [x] Тестирование поиска истории виски
-## <img src="images/logo/Jenkins.svg" width="25" height="25"  alt="Jenkins"/></a> Jenkins <a target="_blank" href="https://jenkins.autotests.cloud/job/Johnnie_Walker_UI_tests/"> job </a>
-<p align="center">
-<a href="https://jenkins.autotests.cloud/job/Johnnie_Walker_UI_tests/"><img src="images/screens/jenkins.PNG" alt="Jenkins"/></a>
-</p>
+- [x] Тестирование информационных страниц сайта (информация о доставке, магазинах, акциях и программе лояльности)
+- [x] Тестирование категорий товаров для собак
+- [x] Тестирование категорий товаров для кошек
 
-### Удаленный запуск тестов на Jenkins
+### MOBILE
 
+- Тестирование начального экрана приложения "Petshop Выгул":
+- [x] Пролистывание экранов с начальной информацией о возможностях приложения
+- [x] Открытие контактов
+
+
+
+
+
+
+
+
+
+
+
+## Содержание
+
+<details>
+<summary>Установка</summary>
+
+### Клонирование репозитория
+
+Для начала работы, клонируйте репозиторий и перейдите в директорию проекта:
+
+   ```sh
+    git clone https://github.com/dfeoktistova/petshop_ru.git # Клонировать репозиторий
+    cd petshop_ru # Перейти в папку проекта
+   ```
+
+### Создание и запуск виртуального окружения
+
+   ```sh
+    python -m venv venv # Создать виртуальное окружение
+    .\venv\Scripts\activate # Активировать созданное виртуальное окружение
+   ```
+
+### Установка зависимостей
+
+   ```sh
+     pip install -r requirements.txt  # Установить зависимости из файла requirements.txt
+   ```
+</details>
+
+
+
+<details>
+<summary>Запуск тестов</summary>
+
+### Возможности
+
+Тесты находятся в папке "tests" и разделены по следующим директориям, а также предполагают различный
+способ запуска:
+- api_tests (локально)
+- mobile_tests (на локальном эмуляторе или в browserstack)
+- ui_tests (локально или в контейнере selenoid)
+
+Ключи для запуска тестов возможны следующие:
+- browser_name (браузер, на котором будут запущены тесты)
+- browser_version (версия браузера)
+- context (среда для запуска мобильных тестов (browserstack/локальный эмулятор))
+- ui_env (среда для запуска UI тестов (локальный запуск/selenoid))
+
+```commandline
+def pytest_addoption(parser):
+    parser.addoption(
+        '--browser_name',
+        choices=['chrome', 'firefox'],
+        default='chrome'
+    )
+    parser.addoption(
+        '--browser_version',
+        choices=['99.0', '100.0', '113.0', '114.0', '120.0', '121.0', '122.0', '123.0', '124.0', '125.0', '126.0'],
+        default='126.0'
+    )
+    parser.addoption(
+        '--context',
+        choices=['bstack', 'local_emulator'],
+        default='local_emulator'
+    )
+    parser.addoption(
+        '--ui_env',
+        choices=['local', 'selenoid'],
+        default='local'
+    )
 ```
-clean
-test
--Duser=${USER}
--Dpassword=${PASSWORD}
--DremoteBrowser=${REMOTE_DRIVER_URL}
--Dbrowser=${BROWSER}
--Dsize=${BROUSERSIZE}
--Dversion=${VERSION}
-```
-##  Запуск тестов из терминала
-Локальный запуск:
-```
-gradle clean test
-```
 
-# Примеры использования
+### Локальный запуск
 
-### Для запуска удаленных тестов необходимо заполнить remote.properties или передать значение:
+Для локального запуска используется команда:
 
-* browser (default chrome)
-* browserVersion (default 89.0)
-* browserSize (default 1920x1080)
-* browserMobileView (mobile device name, for example iPhone X)
-* remoteDriverUrl (url address from selenoid or grid)
-* videoStorage (url address where you should get video)
-* threads (number of threads)
+   ```sh
+     pytest # Запуск всех тестов проекта
+   ```
+
+Если параметры запуска, рассмотренные в предыдущем разделе, не указаны, то тесты будут запущены
+с дефолтными настройками (задаются в файле "conftest").
+
+</details>
 
 
-Запускайте тесты с заполненным remote.properties:
-```bash
-gradle clean test
-```
+<details>
+<summary>Allure отчеты</summary>
 
-Запускайте тесты с незаполненным remote.properties:
-```bash
-gradle clean -DremoteDriverUrl=https://%s:%s@selenoid.autotests.cloud/wd/hub/ -DvideoStorage=https://selenoid.autotests.cloud/video/ -Dthreads=1 test
-```
+После тестового прогона сырые данные для отчета формируются в директории "alluredir", которая задается
+в файле "pytest.ini".
 
-Сгенерировать отчет:
-```bash
-allure serve build/allure-results
-```
-## <img src="images/logo/Allure.svg" width="25" height="25"  alt="Allure"/></a> Отчет в <a target="_blank" href="https://jenkins.autotests.cloud/job/Johnnie_Walker_UI_tests/7/allure/">Allure report</a>
+Для формирования отчета необходимо использовать команду:
+   ```sh
+      allure serve allure-results # Сформировать отчет по результатам тестирования
+   ```
+где allure-results - заданная директория.
 
-###  Основной отчет
-<p align="center">
-<img title="Allure Overview Dashboard" src="images/screens/Alrep.PNG">
-</p>
+После этого в браузере будет открыт Allure отчет.
 
-
-### Тесты 
-<p align="center">
-<img title="Allure Tests" src="images/screens/Altests.PNG">
-</p>
-
-## <img src="images/logo/Allure_TO.svg" width="25" height="25"  alt="Allure"/></a> Отчет в <a target="_blank" href="https://allure.autotests.cloud/launch/15301">Allure TestOps</a>
-<p align="center">
-<img title="Allure Overview Dashboard" src="images/screens/AllureTestOps.PNG">
-</p>
-<p align="center">
-<img title="Allure Overview Dashboard" src="images/screens/AllureTestOps2.PNG">
-</p>
-
-## <img src="images/logo/Jira.svg" width="25" height="25"  alt="Allure"/></a> Интеграция с <a target="_blank" href="https://jira.autotests.cloud/browse/AUTO-1303">Jira</a>
-<p align="center">
-<img title="Allure Overview Dashboard" src="images/screens/JiraTicket.PNG">
-</p>
-
-## <img src="images/logo/Telegram.svg" width="25" height="25"  alt="Allure"/></a> Уведомление в Telegram при помощи бота
-> После завершения сборки специальный бот, созданный в <code>Telegram</code>, автоматически обрабатывает и отправляет сообщение с отчетом о прогоне.
+В каждом тесте есть необходимая информация для того, чтобы можно было сделать вывод о возникшей ошибке.
+Запрос с параметрами/ответ, скриншоты, лог, видео и HTML страница:
 
 <p align="center">
-<img title="Allure Overview Dashboard" src="images/screens/bot.PNG" >
+<img title="Allure Overview Dashboard" src="data/images/2.PNG">
 </p>
 
-## Примеры запуска тестов в Selenoid
-### <img src="images/logo/Selenoid.svg" width="25" height="25" alt="Jenkins"/></a> Видео <a target="_blank" href="https://selenoid.autotests.cloud/video/ef6f0961cd61bebe69b39d6591b8a072.mp4">прохождения тестов </a>
-<p align="center">
-<img title="Local launch example" src="images/gif/video.gif">
-</p>
+Пример видео с прохождением UI-теста:
+![Видео](https://github.com/dfeoktistova/petshop_ru/blob/master/data/images/allure_video.gif)
+
+
+Пример видео с прохождением MOBILE-теста:
+![Видео](https://github.com/dfeoktistova/petshop_ru/blob/master/data/images/mobile_video.mp4)
+
+
+</details>
