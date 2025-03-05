@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from selene import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from model.const import URL
 from helpers.ui.application import Application
 from utils import attach_ui, attach_mobile
 import config
@@ -49,62 +48,6 @@ def app():
     return Application()
 
 
-@pytest.fixture(scope='function')
-def setup_browser(request):
-    load_dotenv()
-
-    browser_version = request.config.getoption('--browser_version')
-    browser_name = request.config.getoption('--browser_name')
-    ui_env = request.config.getoption('--ui_env')
-
-    browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
-    browser_name = browser_name if browser_name != "" else DEFAULT_BROWSER_NAME
-    ui_env = ui_env if ui_env != "" else DEFAULT_UI_ENV
-
-    options = Options()
-
-    if ui_env == 'local':
-        options.page_load_strategy = 'eager'
-        options.add_argument('--disable-gpu')
-        options.add_argument('--no-sandbox')
-
-    if ui_env == 'selenoid':
-        selenoid_capabilities = {
-            "browserName": browser_name,
-            "browserVersion": browser_version,
-            "selenoid:options": {
-                "enableVNC": True,
-                "enableVideo": True
-            }
-        }
-
-        options.capabilities.update(selenoid_capabilities)
-
-        login = os.getenv('LOGIN')
-        password = os.getenv('PASSWORD')
-        driver = webdriver.Remote(command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
-                                  options=options)
-
-        browser.config.driver = driver
-        browser.config.window_width = 1920
-        browser.config.window_height = 1080
-
-    browser.config.base_url = URL
-    browser.config.driver_options = options
-    browser.config.timeout = 20.0
-
-    browser.open(URL)
-
-    yield browser
-
-    attach_ui.add_screenshot(browser)
-    attach_ui.add_logs(browser)
-    attach_ui.add_html(browser)
-    attach_ui.add_video(browser)
-
-    browser.quit()
-
-
 def pytest_configure(config):
     context = config.getoption("--context")
     env_file_path = f".env.{context}"
@@ -130,5 +73,53 @@ def mobile_management(context):
 
     if context == 'bstack':
         attach_mobile.add_video(session_id, os.getenv('USER_NAME'), os.getenv('ACCESS_KEY'))
+
+    browser.quit()
+
+
+@pytest.fixture(scope='function')
+def setup_browser(request):
+    browser_version = request.config.getoption('--browser_version')
+    browser_name = request.config.getoption('--browser_name')
+    ui_env = request.config.getoption('--ui_env')
+
+    driver_options = webdriver.ChromeOptions()
+
+    if ui_env == 'local':
+        driver_options.add_argument('--disable-gpu')
+        driver_options.add_argument('--no-sandbox')
+
+    if ui_env == 'selenoid':
+        options = Options()
+        selenoid_capabilities = {
+            "browserName": browser_name,
+            "browserVersion": browser_version,
+            "selenoid:options": {
+                "enableVNC": True,
+                "enableVideo": True
+            }
+        }
+
+        options.capabilities.update(selenoid_capabilities)
+
+        driver = webdriver.Remote(
+            command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
+            options=options)
+
+        browser.config.driver = driver
+
+    browser.config.window_width = 1920
+    browser.config.window_height = 1080
+
+    driver_options.page_load_strategy = 'eager'
+    browser.config.driver_options = driver_options
+    browser.config.timeout = 15.0
+
+    yield
+
+    attach_ui.add_screenshot(browser)
+    attach_ui.add_logs(browser)
+    attach_ui.add_html(browser)
+    attach_ui.add_video(browser)
 
     browser.quit()

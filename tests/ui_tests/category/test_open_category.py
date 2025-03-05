@@ -14,8 +14,8 @@ import allure
                           ('Умные товары', 'Умные товары для собак'),
                           ('Для дрессировки', 'Товары для дрессировки собак'),
                           ('Подарочные сертификаты', 'Подарочные сертификаты на товары для собак')])
-def test_open_dogs_category(app, setup_browser, category, title):
-    app.category.open_dogs_goods()
+def test_open_dogs_category(setup_browser, app, category, title):
+    app.category.open_dogs_catalog()
     app.category.open_category(category)
     app.category.assert_title(title)
 
@@ -31,7 +31,7 @@ def test_open_dogs_category(app, setup_browser, category, title):
                           ('Аксессуары', 'Аксессуары для кошек'),
                           ('Умные товары', 'Умные товары для кошек'),
                           ('Подарочные сертификаты', 'Подарочные сертификаты')])
-def test_open_cats_category(app, setup_browser, category, title):
-    app.category.open_cats_goods()
+def test_open_cats_category(setup_browser, app, category, title):
+    app.category.open_cats_catalog()
     app.category.open_category(category)
     app.category.assert_title(title)
