@@ -1,7 +1,5 @@
 # Демо проект по автоматизации сайта магазина товаров для животных "Petshop"
-<p align="center">
-<img title="Allure Overview Dashboard" src="data/images/1.PNG">
-</p>
+[![Лого](https://github.com/dfeoktistova/petshop_ru/blob/master/data/images/1.png)](https://www.petshop.ru/)
 
   
 ## Технологии и инструменты
@@ -162,16 +160,15 @@ def pytest_addoption(parser):
 В каждом тесте есть необходимая информация для того, чтобы можно было сделать вывод о возникшей ошибке.
 Запрос с параметрами/ответ, скриншоты, лог, видео и HTML страница:
 
-<p align="center">
-<img title="Allure Overview Dashboard" src="data/images/2.PNG">
-</p>
+
+[!(https://github.com/dfeoktistova/petshop_ru/blob/master/data/images/2.png)])
 
 Пример видео с прохождением UI-теста:
 ![Видео](https://github.com/dfeoktistova/petshop_ru/blob/master/data/images/allure_video.gif)
 
 
 Пример видео с прохождением MOBILE-теста:
-![Видео](https://github.com/dfeoktistova/petshop_ru/blob/master/data/images/mobile_video.mp4)
+![Видео](https://github.com/dfeoktistova/petshop_ru/blob/master/data/images/mobile_video.gif)
 
 
 </details>
