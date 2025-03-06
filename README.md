@@ -171,18 +171,7 @@ def pytest_addoption(parser):
 
 ![Allure](https://github.com/dfeoktistova/petshop_ru/blob/master/data/images/2.png)
 
-Пример видео с прохождением UI-теста:
-
-![Видео](https://github.com/dfeoktistova/petshop_ru/blob/master/data/video/ui_video.gif)
-
-
-Пример видео с прохождением MOBILE-теста:
-
-![Видео](https://github.com/dfeoktistova/petshop_ru/blob/master/data/video/mobile_video.gif)
-
-
 </details>
-
 
 <details>
 <summary>Уведомления в Telegram</summary>
@@ -191,5 +180,19 @@ def pytest_addoption(parser):
 
 ![TG-бот](https://github.com/dfeoktistova/petshop_ru/blob/master/data/images/tg.png)
 
+
+</details>
+
+<details>
+<summary>Видео-прохождения тестов</summary>
+
+Пример видео с прохождением UI-теста:
+
+![Видео](https://github.com/dfeoktistova/petshop_ru/blob/master/data/video/ui_video.gif)
+
+
+Пример видео с прохождением MOBILE-теста:
+
+![Видео](https://github.com/dfeoktistova/petshop_ru/blob/master/data/video/mobile_video.gif)
 
 </details>
