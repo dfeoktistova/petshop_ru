@@ -14,7 +14,8 @@
 > 
 > Запуск мобильных тестов выполняется на локальном Android эмуляторе или в контейнере Browserstack.
 >
-> После завершения прогона <code>Allure Report</code> формирует отчеты о запуске тестов.
+> После завершения прогона <code>Allure Report</code> формирует отчеты о запуске тестов, а также специальный
+> бот присылает в Telegram отчет о прохождении тестов.
 
 ## Покрытый функционал
 ### API
@@ -172,12 +173,23 @@ def pytest_addoption(parser):
 
 Пример видео с прохождением UI-теста:
 
-![Видео](https://github.com/dfeoktistova/petshop_ru/blob/master/data/images/allure_video.gif)
+![Видео](https://github.com/dfeoktistova/petshop_ru/blob/master/data/video/ui_video.gif)
 
 
 Пример видео с прохождением MOBILE-теста:
 
-![Видео](https://github.com/dfeoktistova/petshop_ru/blob/master/data/images/mobile_video.gif)
+![Видео](https://github.com/dfeoktistova/petshop_ru/blob/master/data/video/mobile_video.gif)
+
+
+</details>
+
+
+<details>
+<summary>Уведомления в Telegram</summary>
+
+После прохождения тестов бот отправит отчет со ссылкой на Allure в Телеграм-чат:
+
+![TG-бот](https://github.com/dfeoktistova/petshop_ru/blob/master/data/images/tg.png)
 
 
 </details>
