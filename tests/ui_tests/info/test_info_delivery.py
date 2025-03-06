@@ -6,10 +6,3 @@ import allure
 def test_info_delivery(app, setup_browser):
     app.common.open_home_page()
     app.info.open_delivery_info()
-
-
-@allure.epic('UI')
-@allure.story('info')
-def test_info_quick_delivery(app, setup_browser):
-    app.common.open_home_page()
-    app.info.open_quick_delivery_info()

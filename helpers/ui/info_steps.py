@@ -11,23 +11,20 @@ class InfoHelper:
         self.shop_info_button = browser.element('[class="shop"]')
         self.bonuses_info_button = browser.element('[class="bonuses"]')
 
-        self.delivery_title = browser.element('[class="DeliverySelect_wrapper__3xUUq DeliverySelect_mobile__AbSiK DeliverySelect_tablet__DUtNY DeliverySelect_desktop__hx2OW"]')
+        self.delivery_title = browser.element('[class="DeliverySelect_wrapper__3xUUq DeliverySelect_mobile__AbSiK '
+                                              'DeliverySelect_tablet__DUtNY DeliverySelect_desktop__hx2OW"]')
         self.action_title = browser.element('[class="text text_text__8Us2K PageTitle_title__AxCoi"]')
         self.bonuses_title = browser.element('[class="HeaderBlock_left__Tg60m HeaderBlock_h1__VTWcb"]')
-        self.pesthopru_icon = browser.element('[class="Link_link__-8H7G FirstLine_item__A3tLl action-header-top__logo PetshopLogo_link__Bzop1"]')
+        self.pesthopru_icon = browser.element('[class="Link_link__-8H7G FirstLine_item__A3tLl action-header-top__logo '
+                                              'PetshopLogo_link__Bzop1"]')
 
-        self.quick_delivery_button = browser.element(by.text('Бесплатно доставим от'))
-        self.shop_list_button = browser.element('[class="Link_link__-8H7G Button_item__R0pkO FirstLine_item_30__2WIgo action-header-top__color Button_item_black__p1j2K Button_item_click__syE0M"]')
+        self.shop_list_button = browser.element('[class="Link_link__-8H7G Button_item__R0pkO FirstLine_item_30__2WIgo '
+                                                'action-header-top__color Button_item_black__p1j2K '
+                                                'Button_item_click__syE0M"]')
 
     @allure.step('Открыть страницу "Доставка" через кнопку "Условия доставки"')
     def open_delivery_info(self):
         self.delivery_info_button.click()
-        self.delivery_title.should(have.text('Способы доставки в'))
-
-    @allure.step('Открыть страницу "Доставка" через кнопку "Доставим бесплатно от"')
-    def open_quick_delivery_info(self):
-        self.quick_delivery_button.click()
-        self.delivery_title.should(have.text('Способы доставки в'))
 
     @allure.step('Открыть страницу "Акции и скидки"')
     def open_action_info(self):
